@@ -1,7 +1,7 @@
 library(stringi)
 library(tidyr)
 library(dplyr)
-library(hunspell)
+
 
 
 bigramtable = read.csv("C:/Users/m.dzwolak/Documents/bigram.csv")
