@@ -22,6 +22,7 @@ trigramtable = trigramtable %>% unite(duo, word1, word2, sep = " ")
 engine <- function(input){
   
   numberofspaces <- sapply(regmatches(input, gregexpr(" ", input)), length)
+  input = gsub('[[:punct:] ]+',' ',input)
   bad <- hunspell(input)
   bad <- hunspell_suggest(bad[[1]])
   
@@ -69,20 +70,6 @@ engine <- function(input){
    }
 }
 
-#aaa <- substr(input,1,2)
-#aaa = strsplit(input, " ")
-
-input = "hello my friend welcome"
+input = "hello, my"
 
 engine(input)
-
-#backoff dla trigram na 2 gram
-
-modifyinput <- as.data.frame(stri_locate_all(pattern = " ", input, fixed = TRUE))
-modifyinput <- substr(input, tail(modifyinput,2)[1,1]+1,nchar(input))
-
-modifyinput <- as.data.frame(stri_locate_all(pattern = " ", input, fixed = TRUE))
-modifyinput <- substr(input, tail(modifyinput,1)[1,1]+1,nchar(input))
-
- 
-modifyinput
