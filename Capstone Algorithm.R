@@ -31,7 +31,7 @@ engine <- function(input){
     if(nrow(output)!=0){
       return(output)
     }else{
-      print("There is no output!!!!")
+      print(paste0("Did you meant"," ", bad,"?"))
       #tu jest autokorekta
     }
   }
@@ -46,7 +46,7 @@ engine <- function(input){
       modifyinput <- substr(input, tail(modifyinput,1)[1,1]+1,nchar(input))
       bestmatch <- bigramtable %>% filter(bigramtable$word1==modifyinput)
       output <- head(bestmatch)
-      print("Uzyto backoff")
+      return(output)
     }
   }
   
@@ -63,7 +63,8 @@ engine <- function(input){
       modifyinput <- substr(input, tail(modifyinput,1)[1,1]+1,nchar(input))
       bestmatch <- bigramtable %>% filter(bigramtable$word1==modifyinput)
       output <- head(bestmatch)
-      print("Uzyto backoff")
+      return(output)
+
      }
    }
 }
@@ -71,7 +72,7 @@ engine <- function(input){
 #aaa <- substr(input,1,2)
 #aaa = strsplit(input, " ")
 
-input = "welcome"
+input = "hello my friend welcome"
 
 engine(input)
 
