@@ -55,8 +55,8 @@ close(con3)
 #sampling
 set.seed(1234)
 #lineblogss = sample(lineblogs, length(lineblogs)*0.05)
-linenewss = sample(linenews, length(linenews)*0.2)
-linetwitts = sample(linetwitt, length(linetwitt)*0.2)
+linenewss = sample(linenews, length(linenews)*0.01)
+linetwitts = sample(linetwitt, length(linetwitt)*0.01)
 
 #data = c(lineblogss, linenewss, linetwitts)
 data = c(linenewss, linetwitts)
@@ -82,14 +82,14 @@ mytext = convert.tm.to.character(corpus)
 stri_stats_general(mytext)
 summary(mytext)
 
-patterns = c('Á', 'ê','ã','ç', 'à', 'ú', 'ü', 'â', 'ã', '¢')
+patterns = c('Á', 'ê','ã','ç', 'à', 'ú', 'ü', 'â', 'ã', '¢', 'assh', 'dick', 'ass')
 
-unigram = data_frame(text = mytext) %>% 
-  unnest_tokens(word, text) %>% 
+unigram = data_frame(text = mytext) %>%
+  unnest_tokens(word, text) %>%
   anti_join(stop_words) %>%
-  group_by(word) %>% 
+  group_by(word) %>%
   count(word, sort = TRUE) %>%
-  mutate(badword = ifelse(grepl(paste(patterns, collapse="|"), word)==TRUE | grepl("fuck", word)==TRUE,1,0)) %>% 
+  mutate(badword = ifelse(grepl(paste(patterns, collapse="|"), word)==TRUE | grepl("fuck", word)==TRUE,1,0)) %>%
   filter(badword==0) %>%
   select(word, n)
 
@@ -161,6 +161,23 @@ trigram = data_frame(text = mytext) %>%
 #write.table(bigram, file = "bigram.txt", row.names = FALSE)
 # write.table(trigram, file = "trigram.txt", row.names = FALSE)
 
-write.csv(bigram, file = "bigram.csv", row.names = FALSE)
-write.csv(trigram, file = "trigram.csv", row.names = FALSE)
+#character
+bigram$bigram <- as.character(bigram$bigram)
+trigram$trigram <- as.character(trigram$trigram)
+
+#split
+bigramtable = bigram %>% separate(bigram, c("word1", "word2"), sep = " ")
+trigramtable = trigram %>% separate(trigram, c("word1", "word2", "word3"), sep = " ")
+trigramtable = trigramtable %>% unite(duo, word1, word2, sep = " ")
+
+#Rank
+bigramtable = bigramtable %>% mutate(Rank = dense_rank(desc(bigramtable$n)))
+trigramtable = trigramtable %>% mutate(Rank = dense_rank(desc(trigramtable$n)))
+
+#Names
+colnames(bigramtable) <- c('word1', 'Predicted', 'Freq', 'Rank')
+colnames(trigramtable) <- c('duo', 'Predicted', 'Freq', 'Rank')
+
+write.csv(bigramtable, file = "bigramtable.csv", row.names = FALSE)
+write.csv(trigramtable, file = "trigramtable.csv", row.names = FALSE)
 #write.csv(fourgram, file = "fourgram.csv", row.names = FALSE)
