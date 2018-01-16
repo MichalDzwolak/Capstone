@@ -3,8 +3,8 @@ library(tidyr)
 library(dplyr)
 library(hunspell)
 
-bigramtable = read.csv("C:/Users/m.dzwolak/Documents/bigramtable.csv")
-trigramtable = read.csv("C:/Users/m.dzwolak/Documents/trigramtable.csv")
+bigramtable = read.csv("C:/Users/m.dzwolak/Documents/bigramtable.csv", stringsAsFactors = FALSE)
+trigramtable = read.csv("C:/Users/m.dzwolak/Documents/trigramtable.csv", stringsAsFactors = FALSE)
 
 #Algorithm
 

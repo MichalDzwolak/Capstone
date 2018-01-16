@@ -3,6 +3,7 @@ library(stringi)
 library(tidyr)
 library(dplyr)
 library(hunspell)
+library(ggplot2)
 
 
 server <- function(input, output) {
@@ -26,6 +27,12 @@ server <- function(input, output) {
     engine(input$text)
     
     })
+  
+  output$plot <- shiny::renderPlot({
+    
+    
+    
+  })
 
   
 }

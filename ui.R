@@ -25,8 +25,8 @@ ui <- fluidPage(
     mainPanel(
       
       # Output: Verbatim text for data summary ----
-      shiny::tableOutput("predictedtext")
-      
+      shiny::tableOutput("predictedtext"),
+      shiny::plotOutput("plot")
       # Output: HTML table with requested number of observations ----
       #tableOutput("view")
       
