@@ -106,9 +106,9 @@ server <- function(input, output) {
   
   output$author <- shiny::renderText("Hi my name is Michal. I come from Poland but live in Brussels. I'm working as a data analyst for almost four years. Six months ago i decided to learn next programing language (R) which will help me to analyse data more efficient. This is how i found Hopkins Data Science specialisation. Tool which you are using now was created as a Capstone project to receive final cerificate.")
   output$author1 <- shiny::renderText("In terms of contact please use my email address : michal.dzwolak@gmail.com")
-  output$app <- shiny::renderText("Based on implemented dataset, application calculates next word in relation to inputed ones. It means, if inputed word is hello, application will calculate which following word was most frequent in analysed dataset.")
-  output$aboutplot <- shiny::renderText("Plot is a visualisation of next words frequency. It shows next words frequency and a rank of words in a dataset in relation to inputted ones.")
-  output$abouttable <- shiny::renderText("Table shows top five frequent words observed in a dataset. Predicted column: shows top next words after inputed ones. Freq column: shows frequency, how many times word from column Predicted appeared after inputed word. Rank: Shows ranking of next word in relation to inputed ones. It means that next words which appearded most frequent after inputed word will be ranked as first.")
+  output$app <- shiny::renderText("Based on implemented dataset, application calculates next word in relation to entered ones. It means, if entered word is hello, application will calculate which following word was most frequent in analysed dataset.")
+  output$aboutplot <- shiny::renderText("Plot is a visualisation of next words frequency. It shows next words frequency and a rank of words in a dataset in relation to entered ones.")
+  output$abouttable <- shiny::renderText("Table shows top five frequent words observed in a dataset. Predicted column: shows top next words after entered ones. Freq column: shows frequency, how many times word from column Predicted appeared after entered word. Rank: Shows ranking of next word in relation to entered ones. It means that next words which appearded most frequent after entered word will be ranked as first.")
 }
   
 
