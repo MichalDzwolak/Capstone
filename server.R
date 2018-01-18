@@ -99,6 +99,8 @@ server <- function(input, output) {
     
   })
   
+  output$author <- shiny::renderText("Hi my name is Michal. I come from Poland but live in Brussels. I'm working as a data analyst for almost four years. Six months ago i decided to learn next programing language (R) which will help me to analyse data more efficient. This is how i found Hopkins Data Science specialisation. Tool which you are using now was created as a Capstone project to receive final cerificate.")
+  output$author1 <- shiny::renderText("In terms of contact please use me email address : michal.dzwolak@gmail.com")
 }
   
 

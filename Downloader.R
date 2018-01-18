@@ -6,6 +6,7 @@ library(textreg)
 library(tidytext)
 library(dplyr)
 library(stringi)
+library(tidyr)
 
 # download
 if(!file.exists("./Capstone")){dir.create("./Capstone")}
@@ -55,8 +56,8 @@ close(con3)
 #sampling
 set.seed(1234)
 #lineblogss = sample(lineblogs, length(lineblogs)*0.05)
-linenewss = sample(linenews, length(linenews)*0.01)
-linetwitts = sample(linetwitt, length(linetwitt)*0.01)
+linenewss = sample(linenews, length(linenews)*0.1)
+linetwitts = sample(linetwitt, length(linetwitt)*0.1)
 
 #data = c(lineblogss, linenewss, linetwitts)
 data = c(linenewss, linetwitts)
@@ -177,6 +178,9 @@ trigramtable = trigramtable %>% mutate(Rank = dense_rank(desc(trigramtable$n)))
 #Names
 colnames(bigramtable) <- c('word1', 'Predicted', 'Freq', 'Rank')
 colnames(trigramtable) <- c('duo', 'Predicted', 'Freq', 'Rank')
+
+bigramtable$Rank <- NULL
+trigramtable$Rank <- NULL
 
 write.csv(bigramtable, file = "bigramtable.csv", row.names = FALSE)
 write.csv(trigramtable, file = "trigramtable.csv", row.names = FALSE)

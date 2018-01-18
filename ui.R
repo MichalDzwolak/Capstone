@@ -19,7 +19,7 @@ ui <- fluidPage(
       
       # Input: Selector for choosing dataset ----
       textInput("text", "Please enter a word"),
-      helpText("Note: first prediction can take aproximately 10 seconds. Please do not leave sapce after inputed text.")
+      helpText("Note: first prediction can take approximately 10 seconds. Please do not leave space after inputed text.")
     ),
     
     # Main panel for displaying outputs ----
@@ -39,7 +39,9 @@ ui <- fluidPage(
         
         tabPanel("Author", 
                  h4("About author"),
-                 shiny::textOutput("author")
+                 shiny::textOutput("author"),
+                 h4("Contact:"),
+                 shiny::textOutput("author1")
                  )
         
       )
