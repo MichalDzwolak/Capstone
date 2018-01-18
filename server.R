@@ -19,6 +19,7 @@ server <- function(input, output) {
     
     numberofspaces <- sapply(regmatches(input, gregexpr(" ", input)), length)
     input = gsub('[[:punct:] ]+',' ',input)
+    input = tolower(input)
     
     if(numberofspaces==0){
       bestmatch <- bigramtable %>% filter(bigramtable$word1==input)
