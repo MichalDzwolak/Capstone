@@ -3,6 +3,10 @@ library(shiny)
 
 # Define UI for dataset viewer app ----
 ui <- fluidPage(
+  tags$style(type="text/css",
+             ".shiny-output-error { visibility: hidden; }",
+             ".shiny-output-error:before { visibility: hidden; }"
+  ),
   
   # App title ----
   titlePanel("Predictive tool"),
@@ -14,19 +18,43 @@ ui <- fluidPage(
     sidebarPanel(
       
       # Input: Selector for choosing dataset ----
-      textInput("text", "Please enter a word")
-      # Input: Numeric entry for number of obs to view ----
-      # numericInput(inputId = "obs",
-      #              label = "Number of predicted words",
-      #              value = 5)
+      textInput("text", "Please enter a word"),
+      helpText("Note: first prediction can take aproximately 10 seconds. Please do not leave sapce after inputed text.")
     ),
     
     # Main panel for displaying outputs ----
     mainPanel(
       
+      shiny::tabsetPanel(
+        tabPanel("Results",
+                 
+                 h4("Frequency Plot"),
+                 shiny::plotOutput("plot"),
+                 h4("Frequency Table"),
+                 shiny::tableOutput("predictedtext"),
+                 h5("Median of words frequency is:"),
+                 shiny::textOutput("median"),
+                 h5("Mean of words frequency is:"),
+                 shiny::textOutput("mean")),
+        
+        tabPanel("Author", 
+                 h4("About author"),
+                 shiny::textOutput("author")
+                 )
+        
+      )
+
+      
       # Output: Verbatim text for data summary ----
-      shiny::tableOutput("predictedtext"),
-      shiny::plotOutput("plot")
+      # h4("Frequency Plot"),
+      # shiny::plotOutput("plot"),
+      # h4("Frequency Table"),
+      # shiny::tableOutput("predictedtext"),
+      # h5("Median of words frequency is:"),
+      # shiny::textOutput("median"),
+      # h5("Mean of words frequency is:"),
+      # shiny::textOutput("mean")
+      
       # Output: HTML table with requested number of observations ----
       #tableOutput("view")
       
