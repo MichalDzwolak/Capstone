@@ -5,11 +5,15 @@ library(dplyr)
 library(ggplot2)
 library(wordcloud)
 
+#setwd("~/CapstonrFinal")
 
 server <- function(input, output) {
+
+  #bigramtable <- read.csv("C:/Users/m.dzwolak/Documents/CapstonrFinal/bigramtable.csv", stringsAsFactors = FALSE)
+  #trigramtable <- read.csv("C:/Users/m.dzwolak/Documents/CapstonrFinal/trigramtable.csv", stringsAsFactors = FALSE)
   
-  bigramtable <- read.csv("C:/Users/m.dzwolak/Documents/bigramtable.csv", stringsAsFactors = FALSE)
-  trigramtable <- read.csv("C:/Users/m.dzwolak/Documents/trigramtable.csv", stringsAsFactors = FALSE)
+  bigramtable <- read.csv("bigramtable.csv", stringsAsFactors = FALSE)
+  trigramtable <- read.csv("trigramtable.csv", stringsAsFactors = FALSE)
   
   engine <- function(input){
     

@@ -56,8 +56,8 @@ close(con3)
 #sampling
 set.seed(1234)
 #lineblogss = sample(lineblogs, length(lineblogs)*0.05)
-linenewss = sample(linenews, length(linenews)*0.1)
-linetwitts = sample(linetwitt, length(linetwitt)*0.1)
+linenewss = sample(linenews, length(linenews)*0.05)
+linetwitts = sample(linetwitt, length(linetwitt)*0.05)
 
 #data = c(lineblogss, linenewss, linetwitts)
 data = c(linenewss, linetwitts)
