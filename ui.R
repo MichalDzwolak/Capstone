@@ -20,6 +20,7 @@ ui <- fluidPage(
       
       # Input: Selector for choosing dataset ----
       textInput("text", "Enter a word to predict what follows"),
+      submitButton("Submit", icon("refresh")),
       helpText("Note: first prediction can take approximately 10 seconds. Please do not leave space after entered text.")
     ),
     
